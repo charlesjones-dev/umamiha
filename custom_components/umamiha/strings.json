@@ -1,0 +1,43 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Connect to Umami",
+        "description": "Enter your Umami analytics instance URL and credentials.",
+        "data": {
+          "url": "Umami URL",
+          "username": "Username",
+          "password": "Password"
+        }
+      },
+      "websites": {
+        "title": "Select Websites",
+        "description": "Choose which websites to track.",
+        "data": {
+          "websites": "Websites"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Failed to connect to Umami instance.",
+      "invalid_auth": "Invalid username or password.",
+      "invalid_url": "URL must use http or https and include a valid hostname.",
+      "no_websites": "No websites found in your Umami instance.",
+      "unknown": "An unexpected error occurred."
+    },
+    "abort": {
+      "already_configured": "This Umami instance is already configured."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "UmamiHA Options",
+        "data": {
+          "scan_interval": "Update interval (seconds)",
+          "websites": "Websites"
+        }
+      }
+    }
+  }
+}
