@@ -182,27 +182,16 @@ class UmamiApiClient:
     async def get_realtime(self, website_id: str) -> dict:
         """Get realtime data: top 5 countries and top 5 URLs from last 5 minutes."""
         self._validate_id(website_id)
-        data = await self._get(f"/api/realtime/{website_id}")
-
         five_min_ago = datetime.now(tz=timezone.utc).timestamp() - 5 * 60
+        start_at = int(five_min_ago * 1000)
+        data = await self._get(f"/api/realtime/{website_id}?startAt={start_at}")
+
         events = data.get("events", [])
 
-        # Single-pass: filter to last 5 minutes and aggregate countries + URLs
+        # Aggregate countries + URLs (server already filtered to startAt window)
         country_sessions: dict[str, set] = {}
         url_sessions: dict[str, set] = {}
         for ev in events:
-            created = ev.get("createdAt", "")
-            if not created:
-                continue
-            try:
-                ts = datetime.fromisoformat(
-                    created.replace("Z", "+00:00")
-                ).timestamp()
-            except (ValueError, TypeError):
-                continue
-            if ts < five_min_ago:
-                continue
-
             session_key = ev.get("sessionId") or ev.get("id", "")
 
             country = ev.get("country")

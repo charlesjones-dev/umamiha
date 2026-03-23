@@ -48,20 +48,19 @@ class UmamiDataUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
         self, website_id: str, fetch_series: bool
     ) -> dict[str, Any]:
         """Fetch data for a single website. Series is only fetched when due."""
-        tasks = [
-            self.client.get_active_visitors(website_id),
-            self.client.get_realtime(website_id),
-        ]
-        if fetch_series:
-            tasks.append(self.client.get_pageview_series(website_id))
+        visitors = await self.client.get_active_visitors(website_id)
 
-        results = await asyncio.gather(*tasks)
-        visitors = results[0]
-        realtime = results[1]
-        series = results[2] if fetch_series else self._series_cache.get(website_id, [])
+        # Skip realtime fetch when no active visitors to reduce egress
+        if visitors > 0:
+            realtime = await self.client.get_realtime(website_id)
+        else:
+            realtime = {"countries": [], "urls": []}
 
         if fetch_series:
+            series = await self.client.get_pageview_series(website_id)
             self._series_cache[website_id] = series
+        else:
+            series = self._series_cache.get(website_id, [])
 
         return {
             "visitors": visitors,
