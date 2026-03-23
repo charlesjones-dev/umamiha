@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.0] - 2026-03-23
+
+### Fixed
+
+- Pass `startAt` parameter to `/api/realtime` endpoint for server-side event filtering, drastically reducing response payload size
+- Skip realtime API call when active visitors is 0
+
+### Changed
+
+- Default scan interval increased from 30s to 60s for new installs
+
 ## [1.0.0] - 2026-03-01
 
 ### Added

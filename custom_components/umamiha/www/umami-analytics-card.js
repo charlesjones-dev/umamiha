@@ -3,7 +3,7 @@
  * Displays realtime visitor data from Umami analytics.
  */
 
-const CARD_VERSION = "1.0.0";
+const CARD_VERSION = "1.1.0";
 
 class UmamiAnalyticsCard extends HTMLElement {
   static get properties() {

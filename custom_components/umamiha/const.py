@@ -1,7 +1,7 @@
 """Constants for the Umami Analytics integration."""
 
 DOMAIN = "umamiha"
-VERSION = "1.0.0"
+VERSION = "1.1.0"
 
 CONF_URL = "url"
 CONF_USERNAME = "username"
