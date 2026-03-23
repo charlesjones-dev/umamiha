@@ -59,14 +59,14 @@ Replace `mysite` with your website's slug (check **Developer Tools > States** an
 
 After setup, click Configure on the integration to change:
 
-- **Update interval** - How often to poll Umami (5-300 seconds, default 30)
+- **Update interval** - How often to poll Umami (5-300 seconds, default 60)
 - **Websites** - Which websites to track
 
 ## Cloudflare Rate Limiting
 
 If your Umami instance is behind Cloudflare, you will likely need to add a WAF rule to allow traffic from your Home Assistant IP.
 
-The Umami API does not provide a single endpoint for all the data this integration needs. Each poll cycle makes **2 API requests per website** (active visitors, realtime events). The 24h pageview series is fetched separately every 5 minutes, adding 1 request per website per 5-minute cycle. With 9 websites at a 30-second interval, that's ~18 requests every 30 seconds plus ~9 series requests every 5 minutes. Lowering the interval or adding more websites increases this further.
+The Umami API does not provide a single endpoint for all the data this integration needs. Each poll cycle makes **up to 2 API requests per website** (active visitors, plus realtime events only when visitors are present). The 24h pageview series is fetched separately every 5 minutes, adding 1 request per website per 5-minute cycle. With 9 websites at a 60-second interval, that's up to ~18 requests every 60 seconds plus ~9 series requests every 5 minutes. Lowering the interval or adding more websites increases this further.
 
 Cloudflare's default rate limiting will flag this as suspicious and start blocking requests, causing the integration to show errors or stale data.
 
