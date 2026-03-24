@@ -1,5 +1,6 @@
 # UmamiHA
 
+[![HACS](https://img.shields.io/badge/HACS-Default-41BDF5.svg)](https://github.com/hacs/integration)
 [![HACS Validation](https://github.com/charlesjones-dev/umamiha/actions/workflows/hacs.yml/badge.svg)](https://github.com/charlesjones-dev/umamiha/actions/workflows/hacs.yml)
 [![Hassfest Validation](https://github.com/charlesjones-dev/umamiha/actions/workflows/hassfest.yml/badge.svg)](https://github.com/charlesjones-dev/umamiha/actions/workflows/hassfest.yml)
 [![License: MIT](https://img.shields.io/github/license/charlesjones-dev/umamiha)](LICENSE)
@@ -25,10 +26,9 @@ Provides sensor entities and a custom Lovelace card showing realtime visitor dat
 ### HACS (Recommended)
 
 1. Open HACS in Home Assistant
-2. Click the three dots menu > Custom repositories
-3. Add `charlesjones-dev/umamiha` as an Integration
-4. Install "UmamiHA"
-5. Restart Home Assistant
+2. Search for "UmamiHA" in the Community Store
+3. Click Install
+4. Restart Home Assistant
 
 ### Manual
 
