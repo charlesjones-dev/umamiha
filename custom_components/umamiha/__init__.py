@@ -93,7 +93,7 @@ async def _register_frontend(hass: HomeAssistant) -> None:
 
     # Auto-register as a Lovelace resource so users don't have to manually add it
     try:
-        resources = hass.data.get("lovelace_resources")
+        resources = getattr(hass.data.get("lovelace"), "resources", None)
         if resources is not None:
             existing = [
                 r for r in resources.async_items()

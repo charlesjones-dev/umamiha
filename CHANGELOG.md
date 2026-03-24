@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.1] - 2026-03-24
+
+### Fixed
+
+- Fix Lovelace card resource not auto-registering due to incorrect `hass.data` key lookup and missing `lovelace` dependency
+
 ## [1.1.0] - 2026-03-23
 
 ### Fixed
